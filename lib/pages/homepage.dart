@@ -31,6 +31,18 @@ class HomePage extends StatelessWidget {
           ],
         ),
       ),
+      actions: <Widget>[
+        GestureDetector(
+          child: Container(
+            padding: EdgeInsets.all(5),
+            child: Image.asset(
+              "assets/icons/shopping-cart.png",
+              width: 30,
+              height: 30,
+            ),
+          ),
+        ),
+      ],
     );
   }
 }
@@ -48,23 +60,26 @@ class BodyPage extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         Container(
-          padding: EdgeInsets.only(top: 10, left: 10, right: 10, bottom: 0),
+          padding: EdgeInsets.only(top: 5, left: 5, right: 5, bottom: 5),
           margin: EdgeInsets.all(10),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(25),
             border:
-                Border.all(width: 0.5, color: Colors.blue.withOpacity(0.52)),
+                Border.all(width: 0.5, color: Colors.amber.withOpacity(0.52)),
           ),
           child: TextField(
             decoration: InputDecoration(
-                border: InputBorder.none,
-                prefixIcon: Icon(
-                  Icons.search,
-                ),
-                hintText: "Search Here",
-                hintStyle: TextStyle(
-                  color: Colors.grey.withOpacity(0.50),
-                )),
+              border: InputBorder.none,
+              prefixIcon: Icon(
+                Icons.search,
+                color: Colors.amber,
+              ),
+              hintText: "Search Here",
+              hintStyle: TextStyle(
+                color: Colors.grey.withOpacity(0.50),
+              ),
+            ),
+            cursorColor: Colors.amber,
           ),
         ),
         SingleChildScrollView(
@@ -132,7 +147,7 @@ class BodyPage extends StatelessWidget {
           ),
         ),
         SizedBox(
-          height: 10,
+          height: 20,
         ),
         DiscountCard(),
       ],
@@ -159,6 +174,9 @@ class DiscountCard extends StatelessWidget {
               fontSize: 18,
             ),
           ),
+          SizedBox(
+            height: 10,
+          ),
           Container(
             margin: EdgeInsets.all(5),
             height: 166,
@@ -170,6 +188,32 @@ class DiscountCard extends StatelessWidget {
                 fit: BoxFit.fitHeight,
                 image: AssetImage("assets/images/01.png"),
               ),
+            ),
+            child: DecoratedBox(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                gradient: LinearGradient(colors: [
+                  Color(0xFFFF961F).withOpacity(0.5),
+                  Colors.amber.withOpacity(0.10)
+                ]),
+              ),
+              child: Row(children: [
+                Expanded(
+                  child: Text(""),
+                ),
+                Expanded(
+                  child: RichText(
+                      text: TextSpan(text: "Discount for \n", children: [
+                    TextSpan(
+                      text: "30%",
+                      style: TextStyle(
+                        fontSize: 40,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ])),
+                ),
+              ]),
             ),
           ),
         ],
@@ -238,7 +282,7 @@ class _CategoryItemState extends State<CategoryItem> {
                 if (current_is_active == true)
                   Container(
                     width: 50,
-                    height: 5,
+                    height: 2,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
                       // shape: BoxShape.,
