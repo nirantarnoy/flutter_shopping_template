@@ -1,48 +1,60 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_shopping_template/pages/detailpage.dart';
+import 'package:flutter_shopping_template/widgets/mainappbar.dart';
+import 'package:flutter_shopping_template/widgets/searchbox.dart';
 import 'package:flutter_svg/svg.dart';
 
 class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: appBar(context),
-      body: BodyPage(),
-    );
-  }
+    TabController _tabController;
+    int _currentIndex = 0;
 
-  AppBar appBar(BuildContext context) {
-    return AppBar(
-      backgroundColor: Colors.transparent,
-      elevation: 0,
-      leading: SvgPicture.asset(
-        "assets/icons/menu2.svg",
-        height: 1,
-        width: 1,
-        fit: BoxFit.scaleDown,
-      ),
-      title: RichText(
-        text: TextSpan(
-          text: "Good",
-          style: TextStyle(
-              color: Colors.black87, fontWeight: FontWeight.bold, fontSize: 20),
-          children: [
-            TextSpan(text: "Food", style: TextStyle(color: Colors.amber)),
-          ],
-        ),
-      ),
-      actions: <Widget>[
-        GestureDetector(
-          child: Container(
-            padding: EdgeInsets.all(5),
-            child: Image.asset(
-              "assets/icons/shopping-cart.png",
-              width: 30,
-              height: 30,
-            ),
+    void _onTaped(int index) {
+      print(index);
+      // setState(() {
+      //   _currentIndex = index;
+      //   if (index == 0) {
+      //     appTitle = '';
+      //   }
+      //   if (index == 1) {
+      //     // Navigator.push(context,
+      //     //     MaterialPageRoute(builder: (context) => JournalissuePage()));
+      //     appTitle = 'สรุปข้อมูล ATK';
+      //     _currentIndex = 1;
+      //   }
+      //   if (index == 2) {
+      //     // Navigator.push(context,
+      //     //     MaterialPageRoute(builder: (context) => JournalissuePage()));
+      //     appTitle = 'สรุปข้อมูลวัคซีน';
+      //     _currentIndex = 2;
+      //   }
+      // });
+    }
+
+    return Scaffold(
+      appBar: MainAppBar(),
+      body: BodyPage(),
+      bottomNavigationBar: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          BottomNavigationBar(
+            type: BottomNavigationBarType.fixed,
+            selectedItemColor: Colors.amber,
+            currentIndex: _currentIndex,
+            onTap: _onTaped,
+            items: [
+              BottomNavigationBarItem(
+                  icon: Icon(Icons.home), title: Text('หน้าแรก')),
+              BottomNavigationBarItem(
+                  icon: Icon(Icons.notifications_active),
+                  title: Text('การแจ้งเตือน')),
+              BottomNavigationBarItem(
+                  icon: Icon(Icons.person), title: Text('ข้อมูลของฉัน'))
+            ],
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }
@@ -59,28 +71,9 @@ class BodyPage extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        Container(
-          padding: EdgeInsets.only(top: 5, left: 5, right: 5, bottom: 5),
-          margin: EdgeInsets.all(10),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(25),
-            border:
-                Border.all(width: 0.5, color: Colors.amber.withOpacity(0.52)),
-          ),
-          child: TextField(
-            decoration: InputDecoration(
-              border: InputBorder.none,
-              prefixIcon: Icon(
-                Icons.search,
-                color: Colors.amber,
-              ),
-              hintText: "Search Here",
-              hintStyle: TextStyle(
-                color: Colors.grey.withOpacity(0.50),
-              ),
-            ),
-            cursorColor: Colors.amber,
-          ),
+        SearchBox(),
+        SizedBox(
+          height: 10,
         ),
         SingleChildScrollView(
           scrollDirection: Axis.horizontal,
@@ -88,32 +81,32 @@ class BodyPage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               CategoryItem(
-                title: "Combo Set",
+                title: "ขายดี",
                 isActive: true,
                 press: _pressFunction,
                 index: 1,
               ),
               CategoryItem(
-                title: "Premium Set",
-                isActive: true,
+                title: "จานด่วน",
+                isActive: false,
+                press: _pressFunction,
+                index: 1,
+              ),
+              CategoryItem(
+                title: "เครื่องดื่ม",
+                isActive: false,
                 press: _pressFunction,
                 index: 2,
               ),
               CategoryItem(
-                title: "Gift Set",
-                isActive: true,
+                title: "พรีเมี่ยมเซ็ต",
+                isActive: false,
                 press: _pressFunction,
                 index: 3,
               ),
               CategoryItem(
-                title: "Flash Set",
-                isActive: true,
-                press: _pressFunction,
-                index: 4,
-              ),
-              CategoryItem(
-                title: "Free Delivery",
-                isActive: true,
+                title: "ส่งฟรี",
+                isActive: false,
                 press: _pressFunction,
                 index: 5,
               ),
@@ -128,7 +121,30 @@ class BodyPage extends StatelessWidget {
           child: Row(
             children: <Widget>[
               ItemCard(
+                title: "Burger & Cola",
+                shopName: "McDonal",
+              ),
+              ItemCard(
                 title: "Burger & Beer",
+                shopName: "McDonal",
+              ),
+              ItemCard(
+                title: "Burger & Beer",
+                shopName: "McDonal",
+              ),
+              ItemCard(
+                title: "Burger & Beer",
+                shopName: "McDonal",
+              ),
+            ],
+          ),
+        ),
+        SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
+          child: Row(
+            children: <Widget>[
+              ItemCard(
+                title: "Burger & Cola",
                 shopName: "McDonal",
               ),
               ItemCard(
@@ -168,7 +184,7 @@ class DiscountCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Text(
-            "Offer and Discount",
+            "ข้อเสนอส่วนลดพิเศษ",
             style: TextStyle(
               fontWeight: FontWeight.bold,
               fontSize: 18,
@@ -186,7 +202,7 @@ class DiscountCard extends StatelessWidget {
               borderRadius: BorderRadius.circular(10),
               image: DecorationImage(
                 fit: BoxFit.fitHeight,
-                image: AssetImage("assets/images/01.png"),
+                image: AssetImage("assets/images/rice.jpg"),
               ),
             ),
             child: DecoratedBox(
@@ -244,13 +260,13 @@ class _CategoryItemState extends State<CategoryItem> {
   bool current_is_active = false;
   @override
   void initState() {
-    if (widget.index != null) {
-      current_is_active = true;
-      //  current_index = widget.index;
-    } else {
-      current_is_active = false;
-      //  current_index = widget.index;
-    }
+    // if (widget.index != null) {
+    //   current_is_active = true;
+    //   //  current_index = widget.index;
+    // } else {
+    //   current_is_active = false;
+    //   //  current_index = widget.index;
+    // }
 
     super.initState();
   }
@@ -279,7 +295,7 @@ class _CategoryItemState extends State<CategoryItem> {
                 SizedBox(
                   height: 5,
                 ),
-                if (current_is_active == true)
+                if (widget.isActive == true)
                   Container(
                     width: 50,
                     height: 2,

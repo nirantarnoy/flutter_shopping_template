@@ -71,7 +71,7 @@ class DetailPage extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            "Burger & Beer",
+                            "Burger & Cola",
                             style: TextStyle(
                               fontSize: 20,
                               fontWeight: FontWeight.bold,
@@ -111,7 +111,7 @@ class DetailPage extends StatelessWidget {
                           color: Colors.amber,
                           borderRadius: BorderRadius.circular(50)),
                       child: Text(
-                        "20B",
+                        "129B",
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 20,
@@ -125,7 +125,7 @@ class DetailPage extends StatelessWidget {
                   height: 10,
                 ),
                 Text(
-                    "ssssssssssssssssssssssssssssssssssssssssssssssdsdsdsdsds"),
+                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur finibus, neque id vestibulum gravida, magna neque volutpat magna, nec pretium leo mauris non nisi. Cras lacinia quis quam ac convallis. Quisque enim erat, varius id laoreet eget, accumsan et lacus"),
                 SizedBox(
                   height: 20,
                 ),
@@ -150,7 +150,7 @@ class DetailPage extends StatelessWidget {
                             width: 10,
                           ),
                           Text(
-                            "Order Now",
+                            "ใส่ตะกร้า",
                             style: TextStyle(
                               color: Colors.white,
                               fontSize: 20,
