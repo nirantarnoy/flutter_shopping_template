@@ -33,6 +33,7 @@ class HomePage extends StatelessWidget {
     }
 
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: MainAppBar(),
       body: BodyPage(),
       bottomNavigationBar: Column(
@@ -44,13 +45,12 @@ class HomePage extends StatelessWidget {
             currentIndex: _currentIndex,
             onTap: _onTaped,
             items: [
-              BottomNavigationBarItem(
-                  icon: Icon(Icons.home), title: Text('หน้าแรก')),
+              BottomNavigationBarItem(icon: Icon(Icons.home), label: 'หน้าแรก'),
               BottomNavigationBarItem(
                   icon: Icon(Icons.notifications_active),
-                  title: Text('การแจ้งเตือน')),
+                  label: 'การแจ้งเตือน'),
               BottomNavigationBarItem(
-                  icon: Icon(Icons.person), title: Text('ข้อมูลของฉัน'))
+                  icon: Icon(Icons.person), label: 'ข้อมูลของฉัน')
             ],
           ),
         ],
@@ -75,97 +75,105 @@ class BodyPage extends StatelessWidget {
         SizedBox(
           height: 10,
         ),
-        SingleChildScrollView(
-          scrollDirection: Axis.horizontal,
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              CategoryItem(
-                title: "ขายดี",
-                isActive: true,
-                press: _pressFunction,
-                index: 1,
-              ),
-              CategoryItem(
-                title: "จานด่วน",
-                isActive: false,
-                press: _pressFunction,
-                index: 1,
-              ),
-              CategoryItem(
-                title: "เครื่องดื่ม",
-                isActive: false,
-                press: _pressFunction,
-                index: 2,
-              ),
-              CategoryItem(
-                title: "พรีเมี่ยมเซ็ต",
-                isActive: false,
-                press: _pressFunction,
-                index: 3,
-              ),
-              CategoryItem(
-                title: "ส่งฟรี",
-                isActive: false,
-                press: _pressFunction,
-                index: 5,
-              ),
-            ],
+        Expanded(
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      CategoryItem(
+                        title: "ขายดี",
+                        isActive: true,
+                        press: _pressFunction,
+                        index: 1,
+                      ),
+                      CategoryItem(
+                        title: "จานด่วน",
+                        isActive: false,
+                        press: _pressFunction,
+                        index: 1,
+                      ),
+                      CategoryItem(
+                        title: "เครื่องดื่ม",
+                        isActive: false,
+                        press: _pressFunction,
+                        index: 2,
+                      ),
+                      CategoryItem(
+                        title: "พรีเมี่ยมเซ็ต",
+                        isActive: false,
+                        press: _pressFunction,
+                        index: 3,
+                      ),
+                      CategoryItem(
+                        title: "ส่งฟรี",
+                        isActive: false,
+                        press: _pressFunction,
+                        index: 5,
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  height: 5,
+                ),
+                SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Row(
+                    children: <Widget>[
+                      ItemCard(
+                        title: "Burger & Cola",
+                        shopName: "McDonal",
+                      ),
+                      ItemCard(
+                        title: "Burger & Beer",
+                        shopName: "McDonal",
+                      ),
+                      ItemCard(
+                        title: "Burger & Beer",
+                        shopName: "McDonal",
+                      ),
+                      ItemCard(
+                        title: "Burger & Beer",
+                        shopName: "McDonal",
+                      ),
+                    ],
+                  ),
+                ),
+                SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Row(
+                    children: <Widget>[
+                      ItemCard(
+                        title: "Burger & Cola",
+                        shopName: "McDonal",
+                      ),
+                      ItemCard(
+                        title: "Burger & Beer",
+                        shopName: "McDonal",
+                      ),
+                      ItemCard(
+                        title: "Burger & Beer",
+                        shopName: "McDonal",
+                      ),
+                      ItemCard(
+                        title: "Burger & Beer",
+                        shopName: "McDonal",
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                DiscountCard(),
+              ],
+            ),
           ),
         ),
-        SizedBox(
-          height: 5,
-        ),
-        SingleChildScrollView(
-          scrollDirection: Axis.horizontal,
-          child: Row(
-            children: <Widget>[
-              ItemCard(
-                title: "Burger & Cola",
-                shopName: "McDonal",
-              ),
-              ItemCard(
-                title: "Burger & Beer",
-                shopName: "McDonal",
-              ),
-              ItemCard(
-                title: "Burger & Beer",
-                shopName: "McDonal",
-              ),
-              ItemCard(
-                title: "Burger & Beer",
-                shopName: "McDonal",
-              ),
-            ],
-          ),
-        ),
-        SingleChildScrollView(
-          scrollDirection: Axis.horizontal,
-          child: Row(
-            children: <Widget>[
-              ItemCard(
-                title: "Burger & Cola",
-                shopName: "McDonal",
-              ),
-              ItemCard(
-                title: "Burger & Beer",
-                shopName: "McDonal",
-              ),
-              ItemCard(
-                title: "Burger & Beer",
-                shopName: "McDonal",
-              ),
-              ItemCard(
-                title: "Burger & Beer",
-                shopName: "McDonal",
-              ),
-            ],
-          ),
-        ),
-        SizedBox(
-          height: 20,
-        ),
-        DiscountCard(),
       ],
     );
   }
