@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_shopping_template/pages/detailpage.dart';
+import 'package:flutter_shopping_template/pages/profilepage.dart';
 import 'package:flutter_shopping_template/widgets/mainappbar.dart';
 import 'package:flutter_shopping_template/widgets/searchbox.dart';
 import 'package:flutter_svg/svg.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     TabController _tabController;
@@ -12,24 +18,24 @@ class HomePage extends StatelessWidget {
 
     void _onTaped(int index) {
       print(index);
-      // setState(() {
-      //   _currentIndex = index;
-      //   if (index == 0) {
-      //     appTitle = '';
-      //   }
-      //   if (index == 1) {
-      //     // Navigator.push(context,
-      //     //     MaterialPageRoute(builder: (context) => JournalissuePage()));
-      //     appTitle = 'สรุปข้อมูล ATK';
-      //     _currentIndex = 1;
-      //   }
-      //   if (index == 2) {
-      //     // Navigator.push(context,
-      //     //     MaterialPageRoute(builder: (context) => JournalissuePage()));
-      //     appTitle = 'สรุปข้อมูลวัคซีน';
-      //     _currentIndex = 2;
-      //   }
-      // });
+      setState(() {
+        _currentIndex = index;
+        if (index == 0) {
+          //appTitle = '';
+        }
+        if (index == 1) {
+          // Navigator.push(context,
+          //     MaterialPageRoute(builder: (context) => JournalissuePage()));
+          //appTitle = 'สรุปข้อมูล ATK';
+          _currentIndex = 1;
+        }
+        if (index == 2) {
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => ProfilePage()));
+          // appTitle = 'สรุปข้อมูลวัคซีน';
+          _currentIndex = 2;
+        }
+      });
     }
 
     return Scaffold(
